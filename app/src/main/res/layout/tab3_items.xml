@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:srcCompat="@android:drawable/stat_sys_data_bluetooth"
+            android:id="@+id/img_btn_tab1"
+            android:background="@color/colorPrimaryDark" />
+
+        <TextView
+            android:text="Bluetooth"
+            android:layout_height="60dp"
+            android:id="@+id/txt_tab1"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp"
+            android:paddingTop="12dp"
+            android:paddingLeft="15dp"
+            android:layout_width="150dp"
+            android:textStyle="normal|bold" />
+
+        <Switch
+            android:text="Off"
+
+            android:id="@+id/swi_tab1"
+            android:paddingLeft="10dp"
+            android:layout_width="90dp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="18sp"
+            android:textStyle="normal|bold"
+            android:textColorLink="@android:color/holo_green_dark"
+            android:checked="false"
+            android:layout_height="60dp" />
+
+    </TableRow>
+</TableLayout>
