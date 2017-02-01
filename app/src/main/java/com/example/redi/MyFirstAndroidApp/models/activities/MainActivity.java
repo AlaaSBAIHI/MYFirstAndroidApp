@@ -1,10 +1,12 @@
-package com.example.redi.MyFirstAndroidApp;
+package com.example.redi.MyFirstAndroidApp.models.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
+
+import com.example.redi.MyFirstAndroidApp.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,9 +71,11 @@ public class MainActivity extends AppCompatActivity {
         imageButton10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                /*finish();
                 android.os.Process.killProcess(android.os.Process.myPid());
-                onDestroy();
+                onDestroy();*/
+                startActivity(new Intent(MainActivity.this, DataBindingExampleActivity.class));
+
             }
         });
 

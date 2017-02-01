@@ -1,4 +1,4 @@
-package com.example.redi.MyFirstAndroidApp;
+package com.example.redi.MyFirstAndroidApp.models.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TabHost;
 
-import com.example.redi.MyFirstAndroidApp.models.SettingItems;
+import com.example.redi.MyFirstAndroidApp.R;
+import com.example.redi.MyFirstAndroidApp.models.activities.activitiesAdapters.SettingItemsAdapter;
+import com.example.redi.MyFirstAndroidApp.models.entities.SettingItems;
 
 import java.util.ArrayList;
 import java.util.List;

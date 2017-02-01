@@ -1,4 +1,4 @@
-package com.example.redi.MyFirstAndroidApp;
+package com.example.redi.MyFirstAndroidApp.models.activities.activitiesAdapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -11,7 +11,8 @@ import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.example.redi.MyFirstAndroidApp.models.SettingItems;
+import com.example.redi.MyFirstAndroidApp.R;
+import com.example.redi.MyFirstAndroidApp.models.entities.SettingItems;
 
 import java.util.List;
 

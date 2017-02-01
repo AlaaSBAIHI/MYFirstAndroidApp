@@ -5,7 +5,7 @@
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
+         location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,13 +17,13 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BoundServiceActivity" />
+        <activity android:name=".models.activities.BoundServiceActivity" />
 
-        <service android:name=".models.BoundService" />
+        <service android:name=".models.services.BoundService" />
 
-        <activity android:name=".TapsShowRecyclerActivity" />
-        <activity android:name=".RecyclerActivity" />
-        <activity android:name=".Parcelable" />
+        <activity android:name=".models.activities.TapsShowRecyclerActivity" />
+        <activity android:name=".models.activities.RecyclerActivity" />
+        <activity android:name=".models.activities.Parcelable" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -37,14 +37,14 @@
              Note that the API key is linked to the encryption key used to sign the APK.
              You need a different API key for each encryption key, including the release key that is used to
              sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCUMkz_wwc9CV-jHrpyS-PK1GPPmvmrtes" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".models.activities.MainActivity"
             android:label="My First App">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,8 +52,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyMapsActivity" />
-        <activity android:name=".AddNewVenue"></activity>
+        <activity android:name=".models.activities.MyMapsActivity" />
+        <activity android:name=".models.activities.AddNewVenue" />
+        <activity android:name=".models.activities.DataBindingExampleActivity"></activity>
     </application>
 
 </manifest>

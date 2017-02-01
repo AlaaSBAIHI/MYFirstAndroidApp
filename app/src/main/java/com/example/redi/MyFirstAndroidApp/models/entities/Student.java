@@ -1,4 +1,4 @@
-package com.example.redi.MyFirstAndroidApp.models;
+package com.example.redi.MyFirstAndroidApp.models.entities;
 
 import android.support.annotation.AnyThread;
 import android.support.annotation.DrawableRes;
@@ -35,7 +35,6 @@ public class Student {
         return gender;
     }
 
-    @NonNull
     public int getImage() {
         return image;
     }

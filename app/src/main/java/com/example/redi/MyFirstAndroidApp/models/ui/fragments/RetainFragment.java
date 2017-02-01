@@ -33,21 +33,52 @@ public class RetainFragment extends Fragment {
 
 
     public void createPlace(final Venue venue) {
-        Call<Void> call = service.createVenue(venue);
+        Call<Venue> call = service.createVenue(venue);
 
-        call.enqueue(new Callback<Void>() {
+        call.enqueue(new Callback<Venue>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful())
+            public void onResponse(Call<Venue> call, Response<Venue> response) {
+                if (response.isSuccessful()) {
+
+                    final Venue venue1 = response.body();
+                    getPlaces(new Consumer<List<Venue>>() {
+                        @Override
+                        public void apply(List<Venue> venues) {
+                            venues.add(venue1);
+                        }
+                    });
+
                     showMessageSuccessful("Add New", venue.getName().toString());
+                }
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(Call<Venue> call, Throwable t) {
                 showNetError();
             }
         });
 
+    }
+
+
+    public void getPlaceByIdfinal(Consumer<Void> consumer, final Venue venue) {
+        getConsumer = consumer;
+        Call<Venue> call = service.getVenueById(venue.getId());
+        call.enqueue(new Callback<Venue>() {
+            @Override
+            public void onResponse(Call<Venue> call, Response<Venue> response) {
+                if (response.isSuccessful()) {
+                    Venue venue1 = response.body();
+                } else {
+                    showNetError();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Venue> call, Throwable t) {
+                showNetError();
+            }
+        });
     }
 
 
@@ -78,30 +109,43 @@ public class RetainFragment extends Fragment {
 
 
     public void updatePlace(final Venue venue) {
-        Call<Void> call = service.updateVenue(venue);
+        Call<Venue> call = service.updateVenue(venue.getId(), venue);
 
-        call.enqueue(new Callback<Void>() {
+        call.enqueue(new Callback<Venue>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(Call<Venue> call, Response<Venue> response) {
                 if (response.isSuccessful())
                     showMessageSuccessful("Update", venue.getName().toLowerCase());
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(Call<Venue> call, Throwable t) {
                 showNetError();
             }
         });
     }
 
-    public void deletePlace(final long id) {
-        Call<Void> call = service.deleteVenue(id);
+    public void deletePlace(final Consumer<Void> consumer, final Venue venue) {
+
+        Call<Void> call = service.deleteVenue(venue.getId());
 
         call.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (response.isSuccessful())
-                    showMessageSuccessful("Delete", "");
+            public void onResponse(Call<Void> call, final Response<Void> response) {
+                if (response.isSuccessful()) {
+
+                    getPlaces(new Consumer<List<Venue>>() {
+                        @Override
+                        public void apply(List<Venue> venues) {
+                            venues.remove(venue);
+                            consumer.apply(response.body());
+                        }
+                    });
+
+                }
+
+                showMessageSuccessful("Delete", venue.getName().toString());
+
             }
 
             @Override

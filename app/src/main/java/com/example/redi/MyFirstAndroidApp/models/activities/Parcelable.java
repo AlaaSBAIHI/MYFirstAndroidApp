@@ -1,4 +1,4 @@
-package com.example.redi.MyFirstAndroidApp;
+package com.example.redi.MyFirstAndroidApp.models.activities;
 
 import android.content.Intent;
 import android.os.Build;
@@ -12,14 +12,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.redi.MyFirstAndroidApp.models.Email;
+import com.example.redi.MyFirstAndroidApp.R;
+import com.example.redi.MyFirstAndroidApp.models.entities.Email;
 
 public class Parcelable extends AppCompatActivity {
 
     public static final String EMAIL_KEY = "EMAIL_KEY";
-    private Email email;
     TextView textview1;
-
+    private Email email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

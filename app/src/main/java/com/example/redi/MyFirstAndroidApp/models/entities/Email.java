@@ -1,4 +1,4 @@
-package com.example.redi.MyFirstAndroidApp.models;
+package com.example.redi.MyFirstAndroidApp.models.entities;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -9,13 +9,28 @@ import android.support.annotation.NonNull;
  */
 
 public class Email implements Parcelable {
-    private String from;
+    public static final Creator<Email> CREATOR = new Creator<Email>() {
+        @Override
+        public Email createFromParcel(Parcel source) {
+            return new Email(source);
+        }
 
+        @Override
+        public Email[] newArray(int size) {
+            return new Email[size];
+        }
+    };
+    private String from;
     private String body;
 
     public Email(@NonNull String from, @NonNull String body) {
         this.from = from;
         this.body = body;
+    }
+
+    private Email(Parcel in) {
+        this.from = in.readString();
+        this.body = in.readString();
     }
 
     @NonNull
@@ -28,7 +43,6 @@ public class Email implements Parcelable {
         return body;
     }
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -39,21 +53,4 @@ public class Email implements Parcelable {
         dest.writeString(this.from);
         dest.writeString(this.body);
     }
-
-    protected Email(Parcel in) {
-        this.from = in.readString();
-        this.body = in.readString();
-    }
-
-    public static final Creator<Email> CREATOR = new Creator<Email>() {
-        @Override
-        public Email createFromParcel(Parcel source) {
-            return new Email(source);
-        }
-
-        @Override
-        public Email[] newArray(int size) {
-            return new Email[size];
-        }
-    };
 }

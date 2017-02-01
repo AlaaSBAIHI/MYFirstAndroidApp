@@ -9,112 +9,112 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.redi.MyFirstAndroidApp.Parcelable">
+    tools:context="com.example.redi.MyFirstAndroidApp.models.activities.Parcelable">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:weightSum="1">
 
         <GridLayout
+            android:id="@+id/gridLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="0dp"
             android:paddingLeft="0dp"
-            tools:layout_editor_absoluteY="11dp"
+            android:paddingRight="0dp"
             tools:layout_editor_absoluteX="8dp"
-            android:id="@+id/gridLayout">
+            tools:layout_editor_absoluteY="11dp">
 
             <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/images"
                 android:id="@+id/parc_img_btn_home"
-                android:background="@color/cardview_shadow_end_color"
-                android:layout_weight="1.24"
-                android:paddingRight="0dp"
-                android:layout_marginRight="10dp" />
-
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:srcCompat="@drawable/ic_menu_share"
-                android:id="@+id/parc_img_btn_std"
-                android:background="@color/colorAccent"
-                android:layout_marginRight="10dp" />
-
-            <ImageButton
-                app:srcCompat="@drawable/ic_menu_manage"
-                android:id="@+id/parc_img_btn_tab"
-                android:background="@android:color/holo_green_dark"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="10dp" />
-
-            <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                app:srcCompat="@mipmap/ic_launcher"
-                android:id="@+id/parc_img_btn_ser"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1.24"
                 android:background="@color/cardview_shadow_end_color"
-                android:layout_marginRight="10dp" />
+                android:paddingRight="0dp"
+                app:srcCompat="@drawable/images" />
 
             <ImageButton
+                android:id="@+id/parc_img_btn_std"
                 android:layout_width="50dp"
-                app:srcCompat="@android:drawable/ic_dialog_map"
-                android:id="@+id/parc_img_btn_map"
-                android:background="@color/cast_intro_overlay_button_background_color"
-                android:layout_weight="1.24"
-                android:paddingRight="0dp"
-                tools:layout_editor_absoluteY="8dp"
-                tools:layout_editor_absoluteX="0dp"
                 android:layout_height="50dp"
-                android:layout_marginRight="10dp" />
+                android:layout_marginRight="10dp"
+                android:background="@color/colorAccent"
+                app:srcCompat="@drawable/ic_menu_share" />
 
             <ImageButton
+                android:id="@+id/parc_img_btn_tab"
                 android:layout_width="50dp"
-                app:srcCompat="@drawable/ic_menu_send"
-                android:id="@+id/parc_img_btn_exit"
-                android:background="@color/colorAccent"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                android:background="@android:color/holo_green_dark"
+                app:srcCompat="@drawable/ic_menu_manage" />
+
+            <ImageButton
+                android:id="@+id/parc_img_btn_ser"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:background="@color/cardview_shadow_end_color"
+                app:srcCompat="@mipmap/ic_launcher" />
+
+            <ImageButton
+                android:id="@+id/parc_img_btn_map"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1.24"
+                android:background="@color/cast_intro_overlay_button_background_color"
                 android:paddingRight="0dp"
-                tools:layout_editor_absoluteY="8dp"
+                app:srcCompat="@android:drawable/ic_dialog_map"
                 tools:layout_editor_absoluteX="0dp"
-                android:layout_height="50dp" />
+                tools:layout_editor_absoluteY="8dp" />
+
+            <ImageButton
+                android:id="@+id/parc_img_btn_exit"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="1.24"
+                android:background="@color/colorAccent"
+                android:paddingRight="0dp"
+                app:srcCompat="@drawable/ic_menu_send"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="8dp" />
 
         </GridLayout>
 
         <Button
-            android:text="Button"
-            android:layout_width="match_parent"
             android:id="@+id/parc_btn1"
-            android:layout_height="50dp" />
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Button" />
 
         <TextView
-            android:text="TextView"
-            android:layout_width="match_parent"
             android:id="@+id/parc_txt1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:freezesText="true"
-            android:layout_height="wrap_content" />
+            android:text="TextView" />
 
         <TextView
-            android:text="TextView"
-            android:layout_width="match_parent"
             android:id="@+id/parc_txt2"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
         <CheckBox
-            android:text="CheckBox"
+            android:id="@+id/checkBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/checkBox" />
+            android:text="CheckBox" />
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/cast_ic_expanded_controller_play"
-            android:id="@+id/imageView"
-            android:background="@color/colorAccent" />
+            android:background="@color/colorAccent"
+            app:srcCompat="@drawable/cast_ic_expanded_controller_play" />
     </LinearLayout>
 </RelativeLayout>

@@ -18,14 +18,17 @@ import retrofit2.http.Path;
  */
 
 public interface VenueService {
+    @GET("/venues/{id}")
+    Call<Venue> getVenueById(@Path("id") long id);
+
     @GET("/venues")
     Call<List<Venue>> getVenues();
 
     @POST("/venues")
-    Call<Void> createVenue(@Body Venue venue);
+    Call<Venue> createVenue(@Body Venue venue);
 
-    @PATCH("/venues")
-    Call<Void> updateVenue(@Body Venue venue);
+    @PATCH("/venues/{id}")
+    Call<Venue> updateVenue(@Path("id") long id, @Body Venue venue);
 
     @DELETE("/venues/{id}")
     Call<Void> deleteVenue(@Path("id") long id);

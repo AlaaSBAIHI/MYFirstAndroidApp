@@ -9,102 +9,103 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.redi.MyFirstAndroidApp.AddNewVenue">
+    tools:context="com.example.redi.MyFirstAndroidApp.models.activities.AddNewVenue">
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
         android:id="@+id/new_venue_txt_name"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:hint="Name"
-        android:maxLength="30"
-        android:maxLines="1"
-        android:freezesText="true" />
-
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/new_venue_txt_description"
-        android:layout_marginTop="18dp"
-        android:layout_below="@+id/new_venue_txt_name"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:hint="Description" />
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:freezesText="true"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:maxLength="30"
+        android:maxLines="1" />
+
+    <EditText
+        android:id="@+id/new_venue_txt_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/new_venue_txt_name"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="textPersonName" />
 
     <Spinner
+        android:id="@+id/new_venue_spr_category"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/new_venue_spr_category"
-        android:background="@color/cast_expanded_controller_seek_bar_progress_background_tint_color"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/new_venue_txt_description"
         android:layout_marginTop="15dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/new_venue_btn_cancel"
         android:layout_toStartOf="@+id/new_venue_btn_cancel"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:background="@color/cast_expanded_controller_seek_bar_progress_background_tint_color" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
         android:id="@+id/new_venue_txt_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/new_venue_spr_category"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_marginTop="19dp"
-        android:hint="Address" />
+        android:ems="10"
+        android:hint="Address"
+        android:inputType="textPersonName" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
         android:id="@+id/new_venue_txt_latitude"
-        android:layout_below="@+id/new_venue_txt_address"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="16dp"
-        android:hint="Latitude" />
-
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/new_venue_txt_address"
+        android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="Latitude"
+        android:inputType="numberDecimal" />
+
+    <EditText
         android:id="@+id/new_venue_txt_longitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/new_venue_txt_latitude"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_marginTop="15dp"
-        android:hint="Longitude" />
+        android:ems="10"
+        android:hint="Longitude"
+        android:inputType="numberDecimal" />
 
     <ImageButton
-        android:layout_height="50dp"
-        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
         android:id="@+id/new_venue_btn_cancel"
-        android:background="@android:color/holo_red_dark"
-        android:layout_alignTop="@+id/new_venue_btn_save"
-        android:layout_alignParentRight="true"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
-        android:layout_width="140dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/new_venue_btn_save"
+        android:background="@android:color/holo_red_dark"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
     <ImageButton
-        android:layout_height="50dp"
-        app:srcCompat="@android:drawable/ic_menu_save"
         android:id="@+id/new_venue_btn_save"
-        android:background="@android:color/holo_green_dark"
-        android:layout_marginTop="19dp"
-        android:layout_below="@+id/new_venue_txt_longitude"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_width="140dp" />
+        android:layout_below="@+id/new_venue_txt_longitude"
+        android:layout_marginTop="19dp"
+        android:background="@android:color/holo_green_dark"
+        app:srcCompat="@android:drawable/ic_menu_save" />
 
 </RelativeLayout>

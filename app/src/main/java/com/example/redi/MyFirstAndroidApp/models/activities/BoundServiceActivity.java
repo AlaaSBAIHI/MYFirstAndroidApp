@@ -1,4 +1,4 @@
-package com.example.redi.MyFirstAndroidApp;
+package com.example.redi.MyFirstAndroidApp.models.activities;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -12,16 +12,16 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.redi.MyFirstAndroidApp.models.BoundService;
-import com.example.redi.MyFirstAndroidApp.models.BoundService.LocalBinder;
+import com.example.redi.MyFirstAndroidApp.R;
+import com.example.redi.MyFirstAndroidApp.models.services.BoundService;
+import com.example.redi.MyFirstAndroidApp.models.services.BoundService.LocalBinder;
 
 public class BoundServiceActivity extends AppCompatActivity {
 
     private final String LOG_TAG = getClass().getSimpleName();
+    boolean isBound = false;
     private BoundService boundService;
     private Intent intent;
-    boolean isBound = false;
-
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {

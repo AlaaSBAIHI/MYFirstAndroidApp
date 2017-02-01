@@ -1,9 +1,10 @@
-package com.example.redi.MyFirstAndroidApp;
+package com.example.redi.MyFirstAndroidApp.models.activities;
 
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -14,13 +15,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.redi.MyFirstAndroidApp.R;
 import com.example.redi.MyFirstAndroidApp.models.entities.Venue;
 import com.example.redi.MyFirstAndroidApp.models.functional.Consumer;
 import com.example.redi.MyFirstAndroidApp.models.ui.fragments.RetainFragment;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -34,14 +38,16 @@ import permissions.dispatcher.OnPermissionDenied;
 import permissions.dispatcher.RuntimePermissions;
 
 @RuntimePermissions
-public class MyMapsActivity extends AppCompatActivity {
+public class MyMapsActivity extends AppCompatActivity implements LocationListener {
 
-    private Map<MarkerOptions, Venue> markerVenueMap = new HashMap<>();
-
-    protected static final String NETWORK_FRAGMENT_TAG = "NETWORK_FRAGMENT";
-
+    public static final String NETWORK_FRAGMENT_TAG = "NETWORK_FRAGMENT";
+    public float markercolor;
+    private Map<Marker, Venue> markerVenueMap = new HashMap<>();
     private RetainFragment retainFragment;
-
+    private LatLng myLocation;
+    private MarkerOptions markerOptions;
+    private Marker marker;
+    private GoogleMap currentGoogleMap;
     private FloatingActionButton fab_add_venue;
     private FloatingActionButton fab_edit_venue;
     private FloatingActionButton fab_delete_venue;
@@ -66,7 +72,8 @@ public class MyMapsActivity extends AppCompatActivity {
 
     }
 
-    private RetainFragment getRetainFragment() {
+
+    public RetainFragment getRetainFragment() {
         retainFragment = (RetainFragment) getSupportFragmentManager().findFragmentByTag(NETWORK_FRAGMENT_TAG);
         if (retainFragment == null) {
             retainFragment = new RetainFragment();
@@ -74,6 +81,7 @@ public class MyMapsActivity extends AppCompatActivity {
         }
 
         return retainFragment;
+
     }
 
     private void setupNetworkFragment() {
@@ -95,8 +103,9 @@ public class MyMapsActivity extends AppCompatActivity {
             @Override
             public void onMapReady(final GoogleMap googleMap) {
 
-                googleMap.clear();
+                currentGoogleMap = googleMap;
 
+                googleMap.clear();
 
                 MyMapsActivityPermissionsDispatcher.enableMyLocationWithCheck(MyMapsActivity.this, googleMap);
 
@@ -105,11 +114,28 @@ public class MyMapsActivity extends AppCompatActivity {
                     String snippet = "Description: " + venues.get(i).getDescription() + ".\n" + "Category: " + venues.get(i).getCategory() + ".\n" +
                             "Address: " + venues.get(i).getAddress() + ".\n" + "Latitude: " + venues.get(i).getLatitude() + ".\n" + "Longitude: " + venues.get(i).getLongitude();
 
-                    LatLng myLocation = new LatLng(venues.get(i).getLatitude(), venues.get(i).getLongitude());
-                    MarkerOptions marker = new MarkerOptions().position(myLocation).title(venues.get(i).getName()).
-                            snippet(snippet);
+                    myLocation = new LatLng(venues.get(i).getLatitude(), venues.get(i).getLongitude());
 
-                    googleMap.addMarker(marker);
+
+                    switch (venues.get(i).getCategory().toString().toLowerCase()) {
+                        case "bar":
+                            markercolor = BitmapDescriptorFactory.HUE_RED;
+                            break;
+
+                        case "restaurant":
+                            markercolor = BitmapDescriptorFactory.HUE_BLUE;
+                            break;
+
+                        case "coworking_space":
+                            markercolor = BitmapDescriptorFactory.HUE_GREEN;
+                            break;
+                    }
+
+                    markerOptions = new MarkerOptions().position(myLocation).title(venues.get(i).getName()).
+                            snippet(snippet).icon(BitmapDescriptorFactory.defaultMarker(markercolor));
+
+
+                    marker = googleMap.addMarker(markerOptions);
 
                     markerVenueMap.put(marker, venues.get(i));
 
@@ -155,16 +181,36 @@ public class MyMapsActivity extends AppCompatActivity {
                         fab_delete_venue.setVisibility(View.VISIBLE);
                         fab_edit_venue.setVisibility(View.VISIBLE);
 
+                        fab_edit_venue.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                startActivity(new Intent(MyMapsActivity.this, AddNewVenue.class).putExtra("updateVenueDetails", markerVenueMap.get(marker)).putExtra("actionType", "update"));
+
+                            }
+                        });
+
+
                         fab_delete_venue.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
 
-                                getRetainFragment().deletePlace(markerVenueMap.get(marker).getId());
+                                getRetainFragment().deletePlace(new Consumer<Void>() {
+                                    @Override
+                                    public void apply(Void aVoid) {
+                                        setupNetworkFragment();
+                                    }
+                                }, markerVenueMap.get(marker));
+
+                                fab_delete_venue.setVisibility(View.INVISIBLE);
+                                fab_edit_venue.setVisibility(View.INVISIBLE);
+
                             }
                         });
                         return false;
                     }
                 });
+
 
                 fab_add_venue.setVisibility(View.INVISIBLE);
                 fab_refresh_venue.setVisibility(View.INVISIBLE);
@@ -193,12 +239,14 @@ public class MyMapsActivity extends AppCompatActivity {
                             }
                         });
 
+
                         fab_refresh_venue.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 setupNetworkFragment();
                                 fab_add_venue.setVisibility(View.INVISIBLE);
                                 fab_refresh_venue.setVisibility(View.INVISIBLE);
+
                             }
                         });
 
@@ -213,13 +261,13 @@ public class MyMapsActivity extends AppCompatActivity {
 
     @SuppressWarnings("MissingPermission")
     @NeedsPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-    void enableMyLocation(GoogleMap googleMap) {
+    public void enableMyLocation(GoogleMap googleMap) {
         googleMap.setMyLocationEnabled(true);
     }
 
 
     @OnPermissionDenied(Manifest.permission.ACCESS_FINE_LOCATION)
-    void showPermissionDeniedInfo() {
+    public void showPermissionDeniedInfo() {
         Toast.makeText(this, "Please enable Location Permission for  proper app usage", Toast.LENGTH_SHORT).show();
     }
 
@@ -229,5 +277,45 @@ public class MyMapsActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         // NOTE: delegate the permission handling to generated method
         MyMapsActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+    }
+
+    @Override
+    public void onLocationChanged(final Location location) {
+
+
+        currentGoogleMap.clear();
+
+        currentGoogleMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())));
+
+        fab_add_venue.setVisibility(View.VISIBLE);
+        fab_refresh_venue.setVisibility(View.VISIBLE);
+
+        fab_delete_venue.setVisibility(View.INVISIBLE);
+        fab_edit_venue.setVisibility(View.INVISIBLE);
+
+        fab_add_venue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                double[] position = {location.getLatitude(), location.getLongitude()};
+
+
+                startActivity(new Intent(MyMapsActivity.this, AddNewVenue.class).putExtra("position", position));
+
+            }
+        });
+
+
+        fab_refresh_venue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setupNetworkFragment();
+                fab_add_venue.setVisibility(View.INVISIBLE);
+                fab_refresh_venue.setVisibility(View.INVISIBLE);
+
+            }
+        });
+
+
     }
 }

@@ -1,4 +1,4 @@
-package com.example.redi.MyFirstAndroidApp;
+package com.example.redi.MyFirstAndroidApp.models.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.example.redi.MyFirstAndroidApp.models.Student;
+import com.example.redi.MyFirstAndroidApp.R;
+import com.example.redi.MyFirstAndroidApp.models.activities.activitiesAdapters.StudentAdapter;
+import com.example.redi.MyFirstAndroidApp.models.entities.Student;
 
 import java.util.ArrayList;
 import java.util.List;

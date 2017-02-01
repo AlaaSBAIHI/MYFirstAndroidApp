@@ -1,4 +1,4 @@
-package com.example.redi.MyFirstAndroidApp;
+package com.example.redi.MyFirstAndroidApp.models.activities.activitiesAdapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,7 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.redi.MyFirstAndroidApp.models.Student;
+import com.example.redi.MyFirstAndroidApp.R;
+import com.example.redi.MyFirstAndroidApp.models.entities.Student;
 
 import java.util.List;
 
@@ -54,7 +55,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         ImageView studImageTV;
 
 
-        public StudentViewHolder(View itemView) {
+        StudentViewHolder(View itemView) {
             super(itemView);
             studImageTV = (ImageView) itemView.findViewById(R.id.stud_img);
             studNameTV = (TextView) itemView.findViewById(R.id.stud_name);

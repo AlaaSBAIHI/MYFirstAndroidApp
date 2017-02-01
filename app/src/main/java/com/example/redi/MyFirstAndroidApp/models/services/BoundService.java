@@ -1,4 +1,4 @@
-package com.example.redi.MyFirstAndroidApp.models;
+package com.example.redi.MyFirstAndroidApp.models.services;
 
 import android.app.Service;
 import android.content.Intent;
@@ -15,13 +15,6 @@ public class BoundService extends Service {
 
     private final IBinder mBinder = new LocalBinder();
 
-
-    public class LocalBinder extends Binder {
-        public BoundService getBoundService() {
-            return BoundService.this;
-        }
-    }
-
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -30,6 +23,12 @@ public class BoundService extends Service {
 
     public String getElapsedRealTime() {
         return String.valueOf(SystemClock.elapsedRealtime());
+    }
+
+    public class LocalBinder extends Binder {
+        public BoundService getBoundService() {
+            return BoundService.this;
+        }
     }
 
 

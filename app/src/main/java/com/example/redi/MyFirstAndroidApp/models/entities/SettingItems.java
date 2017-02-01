@@ -1,4 +1,4 @@
-package com.example.redi.MyFirstAndroidApp.models;
+package com.example.redi.MyFirstAndroidApp.models.entities;
 
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
@@ -24,17 +24,14 @@ public class SettingItems {
     }
 
 
-    @NonNull
     public int getSlogo() {
         return slogo;
     }
 
-    @NonNull
     public String getSname() {
         return sname;
     }
 
-    @NonNull
     public Boolean getSswitsch() {
         return sswitsch;
     }
@@ -43,7 +40,6 @@ public class SettingItems {
         this.sswitsch = sswitsch;
     }
 
-    @NonNull
     public String getSswitchtext() {
         if (sswitsch)
             sswitchtext = "On";
