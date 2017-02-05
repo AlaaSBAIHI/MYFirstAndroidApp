@@ -69,9 +69,7 @@ public class AddNewVenue extends AppCompatActivity {
         venue = intent.getParcelableExtra("updateVenueDetails");
 
         if (venue != null && actionType != null) {
-            System.out.println("Alaa");
-            System.out.println(actionType);
-            System.out.println(venue.getName().toString());
+
             name.setText(venue.getName());
             description.setText(venue.getDescription());
 
@@ -101,7 +99,7 @@ public class AddNewVenue extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (validate()) {
-                    if (actionType.equalsIgnoreCase("update")) {
+                    if (actionType != null && actionType.equalsIgnoreCase("update")) {
                         venue.setName(name.getText().toString());
                         venue.setDescription(description.getText().toString());
                         venue.setCategory(category.getSelectedItem().toString().toLowerCase());
@@ -109,7 +107,7 @@ public class AddNewVenue extends AppCompatActivity {
                         venue.setLatitude(Double.parseDouble(latitude.getText().toString()));
                         venue.setLongitude(Double.parseDouble(longitude.getText().toString()));
 
-                        actionType = " ";
+                        actionType = "u";
                         getRetainFragment().updatePlace(venue);
                         startActivity(new Intent(AddNewVenue.this, MyMapsActivity.class));
 

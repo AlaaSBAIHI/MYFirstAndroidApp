@@ -1,6 +1,6 @@
 package com.example.redi.MyFirstAndroidApp.models.viewModels;
 
-import com.example.redi.MyFirstAndroidApp.models.entities.User;
+import com.example.redi.MyFirstAndroidApp.models.entities.MyUser;
 import com.example.redi.MyFirstAndroidApp.models.entities.Venue;
 
 /**
@@ -9,18 +9,18 @@ import com.example.redi.MyFirstAndroidApp.models.entities.Venue;
 
 public class viewModels {
     private Venue venue;
-    private User user;
+    private MyUser myUser;
 
-    public viewModels(Venue venue, User user) {
+    public viewModels(Venue venue, MyUser myUser) {
         this.venue = venue;
-        this.user = user;
+        this.myUser = myUser;
     }
 
     public Venue getVenue() {
         return venue;
     }
 
-    public User getUser() {
-        return user;
+    public MyUser getMyUser() {
+        return myUser;
     }
 }
