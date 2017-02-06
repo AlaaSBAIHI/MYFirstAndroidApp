@@ -16,12 +16,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class UserRestClient {
-    private static final String URL = "http://localhost:8080/api";
+    private static final String URL = "http://192.168.178.131:8080/api/";
     private static final String USERNAME = "";
     private static final String PASSWORD = "";
-    private static final String AUTHORIZATION_KEY = "Authorization";
-    private static final String ACCEPT_KEY = "Accept";
-    private static final String APPLICATION_JSON_VALUE = "application/json";
+
+    private static final String AUTHORIZATION_KEY = "authorization";
+    private static final String ACCEPT_KEY = "accept";// Response Type
+    private static final String ACCEPT_VALUE = "text/plain";
+
+    private static final String CONTENT_TYPE_KEY = "content-type"; // Request Type
+    private static final String CONTENT_TYPE_VALUE = "application/json";
 
 
     private static final UserRestClient instance = new UserRestClient();
@@ -52,7 +56,8 @@ public class UserRestClient {
                 Request original = chain.request();
                 Request.Builder reqBuilder = original.newBuilder()
                         .header(AUTHORIZATION_KEY, basic)
-                        .header(ACCEPT_KEY, APPLICATION_JSON_VALUE)
+                        .header(ACCEPT_KEY, ACCEPT_VALUE)
+                        //   .header(CONTENT_TYPE_KEY,CONTENT_TYPE_VALUE)
                         .method(original.method(), original.body());
 
                 Request request = reqBuilder.build();

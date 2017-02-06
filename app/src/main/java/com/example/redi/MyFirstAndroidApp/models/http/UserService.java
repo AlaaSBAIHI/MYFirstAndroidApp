@@ -23,8 +23,8 @@ public interface UserService {
     @GET("/user")
     Call<List<User>> getUsers();
 
-    @POST("/user")
-    Call<User> createUser(@Body User user);
+    @POST("user/")
+    Call<String> createUser();
 
     @PATCH("/user/{id}")
     Call<User> updateUser(@Path("id") long id, @Body User user);

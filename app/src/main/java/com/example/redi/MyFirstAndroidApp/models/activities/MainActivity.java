@@ -74,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
                 /*finish();
                 android.os.Process.killProcess(android.os.Process.myPid());
                 onDestroy();*/
-                startActivity(new Intent(MainActivity.this, DataBindingExampleActivity.class));
+                //     startActivity(new Intent(MainActivity.this, DataBindingExampleActivity.class));
+                startActivity(new Intent(MainActivity.this, UserActivity.class));
 
             }
         });

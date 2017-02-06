@@ -6,6 +6,7 @@ import java.util.UUID;
  * Created by ReDI on 2/5/2017.
  */
 
+
 public class User {
 
     private UUID id;
@@ -22,17 +23,14 @@ public class User {
 
     private String description;
 
-    private boolean active;
 
-    public User(UUID id, String email, String password, String firstName, String lastName, String address, String description, boolean active) {
-        this.id = id;
+    public User(String email, String password, String firstName, String lastName, String address, String description) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.description = description;
-        this.active = active;
     }
 
     public UUID getId() {
@@ -63,9 +61,7 @@ public class User {
         return description;
     }
 
-    public boolean isActive() {
-        return active;
-    }
+
 /*
 
     private Set<Contact> contacts;
